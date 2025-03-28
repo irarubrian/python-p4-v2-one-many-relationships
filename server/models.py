@@ -40,6 +40,19 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
     summary = db.Column(db.String)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'))
 
     def __repr__(self):
         return f"<Review {self.id}, {self.year}, {self.summary}>"
+    
+class Worker(db.Model):
+    __tablename__="workers"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable= False)
+    phone = db.Column(db.Integer, nullable=False)
+    
+    worker_id = db.Column(db.String, db.ForeignKey('employees.id'))
+
+    def __repr__(self):
+        return f'<workers {self.id}, {self.name}, {self.phone}>'
